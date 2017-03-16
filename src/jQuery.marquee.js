@@ -68,7 +68,6 @@ jQuery.fn.extend({
 				if( opt.addon == -1 && _margin + $(this).data(opt.weight) < 0 ){
 					_margin = 0;
 				}else if( opt.addon == 1, _margin > 0 ){
-					console.log(_margin < 0,$(this).data(opt.weight));
 					_margin = -1 * $(this).data(opt.weight);
 				}
 				$(this).css(opt.margin, _margin + "px");
