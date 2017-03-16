@@ -1,0 +1,54 @@
+<div class="marquee-container">
+  <div class="demo_callback">
+    <table>
+      <tr>
+        <td><img src="demo/images/pic1.jpg"></td>
+        <td><img src="demo/images/pic2.jpg"></td>
+        <td><img src="demo/images/pic3.jpg"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div style="margin-top:15px;">
+  <div class="input-group">
+    <span class="input-group-addon">margin-left:</span>
+    <input class="form-control" id="demo_callback_margin_left">
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-primary" id="demo_callback_start">
+      <b>增加滚动功能</b>
+    </button>
+    <button class="btn btn-danger" id="demo_callback_stop">
+      <b>清除滚动功能</b>
+    </button>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-info" id="demo_callback_pause">
+      <b>暂停滚动</b>
+    </button>
+    <button class="btn btn-success" id="demo_callback_restart">
+      <b>继续滚动</b>
+    </button>
+  </div>
+</div>
+<style type="text/css">
+.demo_callback img{max-height:150px;height:150px;}
+</style>
+<script type="text/javascript">
+$(function(){
+	$('#demo_callback_start').click(function(){
+		$('.demo_callback').marquee({}, function(){
+			$('#demo_callback_margin_left').val($(this).css('margin-left'));
+		});
+	});
+	$('#demo_callback_stop').click(function(){
+		clearInterval($('.demo_callback')[0].control);
+	});
+	$('#demo_callback_pause').click(function(){
+		$('.demo_callback').data('pause', true);
+	});
+	$('#demo_callback_restart').click(function(){
+		$('.demo_callback').data('pause', false);
+	});
+}, #TIME#);
+</script>

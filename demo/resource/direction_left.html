@@ -1,0 +1,21 @@
+<div class="marquee-container">
+  <div class="direction_left">
+    <table>
+      <tr>
+        <td><img src="demo/images/pic1.jpg"></td>
+        <td><img src="demo/images/pic2.jpg"></td>
+        <td><img src="demo/images/pic3.jpg"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<style type="text/css">
+.direction_left img{max-height:150px;height:150px;}
+</style>
+<script type="text/javascript">
+$(function(){
+	$('.direction_left').marquee({
+		'direction' : 'left'
+	});
+}, #TIME#);
+</script>

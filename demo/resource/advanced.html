@@ -1,0 +1,53 @@
+<div class="marquee-container">
+  <div class="advanced_01">
+    <table>
+      <tr>
+        <td><img src="demo/images/pic1.jpg"></td>
+        <td><img src="demo/images/pic2.jpg"></td>
+        <td><img src="demo/images/pic3.jpg"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="marquee-container">
+  <div class="advanced_02">
+    <table>
+      <tr>
+        <td><img src="demo/images/pic1.jpg"></td>
+        <td><img src="demo/images/pic2.jpg"></td>
+        <td><img src="demo/images/pic3.jpg"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div style="margin-top:15px;">
+  <div class="input-group">
+    <span class="input-group-addon">margin-left:</span>
+    <input class="form-control" id="advanced_01_margin_left">
+    <input class="form-control" id="advanced_02_margin_left">
+    <span class="input-group-addon">演示结束</span>
+  </div>
+</div>
+<style type="text/css">
+.advanced_01 img,
+.advanced_02 img{max-height:150px;height:150px;}
+</style>
+<script type="text/javascript">
+$(function(){
+	var callback = function(){
+		if( !!$(this).data('out') ){
+			$($(this).data('out')).val($(this).css('margin-left'));
+		}
+	}
+	$('.advanced_01').marquee({
+		'pixels' : 10,
+		'speed' : 50,
+		'direction' : 'left'
+	}, callback).data('out', '#advanced_01_margin_left');
+	$('.advanced_02').marquee({
+		'pixels' : 5,
+		'speed' : 100,
+		'direction' : 'right'
+	}, callback).data('out', '#advanced_02_margin_left');
+}, #TIME#);
+</script>
