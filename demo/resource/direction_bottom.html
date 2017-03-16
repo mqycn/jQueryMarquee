@@ -1,0 +1,26 @@
+<div class="marquee-container">
+  <div class="direction_bottom">
+    <table>
+      <tr>
+        <td><img src="demo/images/pic1.jpg"></td>
+      </tr>
+      <tr>
+        <td><img src="demo/images/pic2.jpg"></td>
+      </tr>
+      <tr>
+        <td><img src="demo/images/pic3.jpg"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var width = $('.direction_bottom').width();
+	$('.direction_bottom').marquee({
+		direction : 'bottom'
+	}).find('img').css({
+		'max-width' : width,
+		'min-width' : width,
+	});
+}, #TIME#);
+</script>

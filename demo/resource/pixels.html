@@ -1,0 +1,36 @@
+<div class="marquee-container">
+  <div class="pixels_50">
+    <table>
+      <tr>
+        <td><img src="demo/images/pic1.jpg"></td>
+        <td><img src="demo/images/pic2.jpg"></td>
+        <td><img src="demo/images/pic3.jpg"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="marquee-container">
+  <div class="pixels_5">
+    <table>
+      <tr>
+        <td><img src="demo/images/pic1.jpg"></td>
+        <td><img src="demo/images/pic2.jpg"></td>
+        <td><img src="demo/images/pic3.jpg"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<style type="text/css">
+.pixels_5 img,
+.pixels_50 img{max-height:150px;height:150px;}
+</style>
+<script type="text/javascript">
+$(function(){
+	$('.pixels_50').marquee({
+		'pixels' : 50
+	});
+	$('.pixels_5').marquee({
+		'pixels' : 5
+	});
+}, #TIME#);
+</script>

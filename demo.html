@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQueryMarquee</title>
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body{padding-top:70px;}
+textarea.form-control{height:200px;}
+
+.marquee-container{overflow:hidden;max-height:400px;}
+</style>
+<!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <script src="src/jQuery.marquee.ie8.min.js"></script>
+<![endif]-->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="src/jQuery.marquee.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="demo/js/main.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">jQueryMarquee 演示</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">jQueryMarquee 演示</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#basic">基本演示</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">自定义方向 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#direction_top">向上</a></li>
+            <li><a href="#direction_bottom">向下</a></li>
+            <li><a href="#direction_left">向左</a></li>
+            <li><a href="#direction_right">向右</a></li>
+          </ul>
+        </li>
+        <li><a href="#speed">移动速度</a></li>
+        <li><a href="#pixels">移动像素数</a></li>
+        <li><a href="#callback">回调函数</a></li>
+        <li><a href="#advanced">综合演示</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://git.oschina.net/mqycn/jQueryMarquee" target="_blank">最新版本</a></li>
+        <li><a href="http://www.miaoqiyuan.cn/" target="_blank">作者博客</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container container-body">
+</div>
+
+<script type="text/template" id="template">
+  <div id="{id}" class="panel panel-default">
+    <div class="panel-heading">
+      <strong>{title}</strong>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-7">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <strong>效果演示</strong>
+            </div>
+            <div class="panel-body">
+              {code}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <strong>代码</strong>
+            </div>
+            <div class="panel-body">
+              <textarea class="form-control">{code}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+</body>
+</html>
