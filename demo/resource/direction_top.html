@@ -16,11 +16,12 @@
 <script type="text/javascript">
 $(function(){
 	var width = $('.direction_top').width();
-	$('.direction_top').marquee({
-		direction : 'top'
-	}).find('img').css({
+	$('.direction_top').find('img').css({
 		'max-width' : width,
 		'min-width' : width,
+	});
+	$('.direction_top').marquee({
+		direction : 'top'
 	});
 }, #TIME#);
 </script>
