@@ -1,3 +1,4 @@
+[html]
 <div class="marquee-container">
   <div class="demo_basic">
     <table>
@@ -9,11 +10,13 @@
     </table>
   </div>
 </div>
-<style type="text/css">
+[/html]
+[css]
+.marquee-container{overflow:hidden;}
 .demo_basic img{max-height:150px;height:150px;}
-</style>
-<script type="text/javascript">
+[/css]
+[js]
 $(function(){
 	$('.demo_basic').marquee();
 }, #TIME#);
-</script>
+[/js]

@@ -1,3 +1,4 @@
+[html]
 <div class="marquee-container">
   <div class="direction_right">
     <table>
@@ -9,13 +10,15 @@
     </table>
   </div>
 </div>
-<style type="text/css">
+[/html]
+[css]
+.marquee-container{overflow:hidden;}
 .direction_right img{max-height:150px;height:150px;}
-</style>
-<script type="text/javascript">
+[/css]
+[js]
 $(function(){
 	$('.direction_right').marquee({
 		'direction' : 'right'
 	});
 }, #TIME#);
-</script>
+[/js]

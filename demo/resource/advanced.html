@@ -1,3 +1,4 @@
+[html]
 <div class="marquee-container">
   <div class="advanced_01">
     <table>
@@ -28,11 +29,13 @@
     <span class="input-group-addon">演示结束</span>
   </div>
 </div>
-<style type="text/css">
+[/html]
+[css]
+.marquee-container{overflow:hidden;}
 .advanced_01 img,
 .advanced_02 img{max-height:150px;height:150px;}
-</style>
-<script type="text/javascript">
+[/css]
+[js]
 $(function(){
 	var callback = function(){
 		if( !!$(this).data('out') ){
@@ -50,4 +53,4 @@ $(function(){
 		'direction' : 'right'
 	}, callback).data('out', '#advanced_02_margin_left');
 }, #TIME#);
-</script>
+[/js]
