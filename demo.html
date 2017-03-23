@@ -6,11 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQueryMarquee</title>
 <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/SyntaxHighlighter/3.0.83/styles/shCore.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/SyntaxHighlighter/3.0.83/styles/shThemeDefault.min.css" rel="stylesheet">
 <style>
 body{padding-top:70px;}
 textarea.form-control{height:200px;}
-
-.marquee-container{overflow:hidden;max-height:400px;}
+.panel-code .panel-heading a{display:block;}
+.panel-code .panel-heading a i,
+.panel-code .panel-heading a span{color:#600;font-weight:400;font-size:0.8em;}
+.panel-code .panel-heading a i{color:#AAA;}
+.panel-code .panel-heading a:hover{text-decoration:none;}
+.panel-code .panel-body{padding:1px;}
+.syntaxhighlighter{margin:0!important;}
 </style>
 <!--[if lt IE 9]>
   <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -20,6 +27,11 @@ textarea.form-control{height:200px;}
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="src/jQuery.marquee.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
+<script src="https://cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shBrushXml.min.js"></script>
+<script src="https://cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shBrushCss.min.js"></script>
+<script src="https://cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
+<script src="demo/js/template.js"></script>
 <script src="demo/js/main.js"></script>
 </head>
 <body>
@@ -59,8 +71,87 @@ textarea.form-control{height:200px;}
   </div>
 </nav>
 
-<div class="container container-body">
-</div>
+<div class="container container-body"></div>
+
+<script>
+$(function(){
+	
+	//创建模板对象
+	var tpl = new Template('#template', '.container-body');
+	
+	//设置模板
+	tpl.template_code_start = $("#template_code_start").html();
+	tpl.template_code_end = $("#template_code_end").html();
+	
+	//代码注释
+	tpl.notes = function(data, language){
+		language = language.toLowerCase();
+		return function($0){
+			var notes = data.id.toLowerCase() + "." + language;
+			switch( language ){
+				case 'js':
+					return '//' + notes;
+				case 'css':
+					return '/* ' + notes + ' */';
+				case 'html':
+					return '<!-- ' + notes + ' -->';
+				default:
+					return '';
+			}
+		};
+	};
+	
+	//替换回调函数
+	tpl.parseInit = function(data){
+		data.__CODE__ = data.html.replace(/(\<|\>)/g, function($0){
+				return $0 == '<' ? '&lt;' : '&gt';
+			}).replace(/\[(\/?)(html|css|js)\]/gi, function($0, $1, $2){
+				if( !$1 ){
+					return tpl.template_code_start
+						.replace(/\{language\}/g, $2.toLowerCase())
+						.replace(/\{LANGUAGE\}/g, $2.toUpperCase())
+						.replace(/\{notes\}/g, tpl.notes(data, $2));
+				}else{
+					return tpl.template_code_end;
+				}
+			}).replace(/\}, #TIME#\);/g, '});');
+		
+		data.__CODE__ = this.replace(data, data.__CODE__);
+		data.html = data.html.replace(/\[(\/?)(html|css|js)\]/gi, function($0, $1, $2){
+				switch($2.toLowerCase()){
+					case "js":
+					case "css":
+						return '<' + $1 + ( $2 == 'js' ? 'script' : 'style') +'>';
+					default:
+						return "";
+				}
+			}).replace(/\$\(function/g, 'setTimeout(function').replace(/\}, #TIME#\);/g, '}, 100);');
+	};
+	
+	//封装加载
+	tpl.add = function(id, title){
+		this.load({
+			id : id,
+			title : title,
+			resource : [
+				['html', 'demo/resource/' + id + '.html']
+			]
+		});
+	};
+	
+	
+	//加载项目
+	tpl.add('basic', '基本演示');
+	tpl.add('direction_top', '自定义方向：向上');
+	tpl.add('direction_bottom', '自定义方向：向下');
+	tpl.add('direction_left', '自定义方向：向左');
+	tpl.add('direction_right', '自定义方向：向右');
+	tpl.add('speed', '移动速度');
+	tpl.add('pixels', '移动像素数');
+	tpl.add('callback', '回掉函数');
+	tpl.add('advanced', '综合演示');
+});
+</script>
 
 <script type="text/template" id="template">
   <div id="{id}" class="panel panel-default">
@@ -69,30 +160,44 @@ textarea.form-control{height:200px;}
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-xs-12 col-sm-7">
+        <div class="col-xs-12 col-sm-5">
           <div class="panel panel-default">
             <div class="panel-heading">
               <strong>效果演示</strong>
             </div>
             <div class="panel-body">
-              {code}
+              {html}
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-5">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <strong>代码</strong>
-            </div>
-            <div class="panel-body">
-              <textarea class="form-control">{code}</textarea>
-            </div>
+        <div class="col-xs-12 col-sm-7">
+          <div class="panel-group" id="{id}_code_parent" role="tablist" aria-multiselectable="true">
+            {__CODE__}
           </div>
+          <script>SyntaxHighlighter.highlight();$('#{id}_code_js_link a').click();</script>
         </div>
       </div>
     </div>
   </div>
 </script>
+<script type="text/template" id="template_code_start">
+  <div class="panel panel-default panel-code" id="{id}_code_{language}">
+    <div class="panel-heading" role="tab" id="{id}_code_{language}_link">
+      <a role="button" data-toggle="collapse" data-parent="#{id}_code_parent" href="#{id}_code_{language}_body" aria-expanded="false" class="collapsed" aria-controls="{id}_code_{language}_body">
+        <strong>{LANGUAGE}代码</strong>
+        <i>/</i>
+        <span>{id}.{language}</span>
+      </a>
+    </div>
+    <div id="{id}_code_{language}_body" class="panel-body panel-body collapse" role="tabpanel" aria-expanded="false" aria-labelledby="{id}_code_{language}_link">
+      <pre class="brush:{language};">
 
+{notes}
+</script>
+<script type="text/template" id="template_code_end">
+      </pre>
+    </div>
+  </div>
+</script>
 </body>
 </html>
