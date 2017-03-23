@@ -1,3 +1,4 @@
+[html]
 <div class="marquee-container">
   <div class="direction_bottom">
     <table>
@@ -13,7 +14,11 @@
     </table>
   </div>
 </div>
-<script type="text/javascript">
+[/html]
+[css]
+.marquee-container{overflow:hidden;max-height:400px;}
+[/css]
+[js]
 $(function(){
 	var width = $('.direction_bottom').width();
 	$('.direction_bottom').find('img').css({
@@ -24,4 +29,4 @@ $(function(){
 		direction : 'bottom'
 	});
 }, #TIME#);
-</script>
+[/js]

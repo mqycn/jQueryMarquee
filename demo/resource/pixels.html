@@ -1,3 +1,4 @@
+[html]
 <div class="marquee-container">
   <div class="pixels_50">
     <table>
@@ -20,11 +21,13 @@
     </table>
   </div>
 </div>
-<style type="text/css">
+[/html]
+[css]
+.marquee-container{overflow:hidden;}
 .pixels_5 img,
 .pixels_50 img{max-height:150px;height:150px;}
-</style>
-<script type="text/javascript">
+[/css]
+[js]
 $(function(){
 	$('.pixels_50').marquee({
 		'pixels' : 50
@@ -33,4 +36,4 @@ $(function(){
 		'pixels' : 5
 	});
 }, #TIME#);
-</script>
+[/js]
